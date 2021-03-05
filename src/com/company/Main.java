@@ -7,9 +7,9 @@ import com.company.framework.ListGeneratorUtil;
 import com.company.models.appliance.Philips;
 import com.company.models.appliance.TeaPot;
 import com.company.models.appliance.Toaster;
-import com.company.utils.BinaryFileUtil;
+import com.company.utils.FileUtil;
 import com.company.utils.ListUtil;
-import com.company.utils.Point;
+import com.company.framework.Point;
 
 import java.io.IOException;
 import java.text.NumberFormat;
@@ -41,16 +41,23 @@ public class Main {
     private static final Point POINT_4 = new Point(2f,5f);
 
     private static final Point POINT_5 = new Point(2f,15f);
+    /*------------Task_7------------*/
+    private static final String FOLDER_NAME_PATH = "D:\\Games";
     /*------------Task_11------------*/
     private static final float MONEY_AMOUNT = 153.5f;
+    /*------------Task_12------------*/
+    private static final String USERS_COUNTRY = "";
+    private static final String USERS_LANGUAGE = "";
     public static void main(String[] args) throws IOException {
 
-        Task1();
-        Task3();
-        Task4();
-        Task5();
-        Task6();
-        Task11();
+//        Task1();
+//        Task3();
+//        Task4();
+//        Task5();
+//        Task6();
+//        Task7();
+//        Task11();
+        Task12();
     }
     private static void Task1(){
         System.out.println("\n------------Task_1------------");
@@ -71,8 +78,10 @@ public class Main {
         System.out.println("\n------------Task_3------------");
         ListGeneratorUtil listGeneratorUtil = new ListGeneratorUtil(SIZE_OF_LIST);
         ArrayList<Integer> list = listGeneratorUtil.GetListWithRandomValues(MIN_GRADE, MAX_GRADE);
+
         System.out.print("List with all marks: ");
         System.out.println(list);
+
         System.out.print("List with only positive marks: ");
         System.out.println(ListUtil.FilterListByValue(list, TARGET_VALUE));
     }
@@ -81,8 +90,10 @@ public class Main {
         System.out.println("\n------------Task_4------------");
         ListGeneratorUtil listGeneratorUtil = new ListGeneratorUtil(SIZE_OF_LIST);
         ArrayList<Integer> list = listGeneratorUtil.GetListWithRandomValues(MIN_GRADE, MAX_GRADE);
+
         System.out.print("List with all marks: ");
         System.out.println(list);
+
         System.out.print("Highest mark: ");
         System.out.println(ListUtil.GetMaxValue(list));
     }
@@ -106,8 +117,18 @@ public class Main {
         BinaryFileGeneratorUtil.SetBinaryFileValuesFromList(BINARY_FILE_NAME, list);
         System.out.printf("List of values is: %s\n",list);
 
-        System.out.printf("List of values from binary file is: %s\n",BinaryFileUtil.GetListOfValuesFromBinaryFile(BINARY_FILE_NAME));
-        System.out.printf("Average value: %s\n", ListUtil.GetAverageValueOfList(BinaryFileUtil.GetListOfValuesFromBinaryFile(BINARY_FILE_NAME)));
+        System.out.printf("List of values from binary file is: %s\n", FileUtil.GetListOfValuesFromBinaryFile(BINARY_FILE_NAME));
+        System.out.printf("Average value: %s\n", ListUtil.GetAverageValueOfList(FileUtil.GetListOfValuesFromBinaryFile(BINARY_FILE_NAME)));
+    }
+
+    private static void Task7(){
+        System.out.println("\n------------Task_7------------");
+        try {
+            System.out.println(FileUtil.GetFilesList(FOLDER_NAME_PATH));
+        }
+        catch (NullPointerException exception){
+            System.out.printf("Path %s does not lead to a folder", FOLDER_NAME_PATH);
+        }
     }
 
     private static void Task11(){
@@ -115,5 +136,12 @@ public class Main {
         System.out.println(NumberFormat.getCurrencyInstance(new Locale("ru", "Ru"))
                 .format(MONEY_AMOUNT));
     }
+
+    private static void Task12(){
+        Locale locale = new Locale(USERS_LANGUAGE, USERS_COUNTRY, "variant");
+        UserInterface userInterface = new UserInterface();
+        userInterface.greeter.SayHello(locale);
+    }
+
 
 }

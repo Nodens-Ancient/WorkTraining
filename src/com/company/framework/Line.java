@@ -1,7 +1,5 @@
 package com.company.framework;
 
-import com.company.utils.Point;
-
 import java.util.ArrayList;
 
 public class Line {

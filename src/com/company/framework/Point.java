@@ -1,4 +1,4 @@
-package com.company.utils;
+package com.company.framework;
 
 public class Point {
     public float xCoordinate;
