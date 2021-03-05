@@ -1,4 +1,4 @@
-package com.company;
+package com.company.UI;
 
 import com.sun.java.accessibility.util.Translator;
 

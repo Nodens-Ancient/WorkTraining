@@ -1,6 +1,7 @@
 package com.company;
 
 
+import com.company.UI.UserInterface;
 import com.company.framework.BinaryFileGeneratorUtil;
 import com.company.framework.Line;
 import com.company.framework.ListGeneratorUtil;
@@ -48,17 +49,18 @@ public class Main {
     /*------------Task_12------------*/
     private static final String USERS_COUNTRY = "";
     private static final String USERS_LANGUAGE = "";
-    public static void main(String[] args) throws IOException {
 
-//        Task1();
-//        Task3();
-//        Task4();
-//        Task5();
-//        Task6();
-//        Task7();
-//        Task11();
+    public static void main(String[] args) throws IOException {
+        Task1();
+        Task3();
+        Task4();
+        Task5();
+        Task6();
+        Task7();
+        Task11();
         Task12();
     }
+
     private static void Task1(){
         System.out.println("\n------------Task_1------------");
 
