@@ -1,7 +1,5 @@
 package com.company.UI;
 
-import com.sun.java.accessibility.util.Translator;
-
 import java.util.Locale;
 
 public class Greeter {
