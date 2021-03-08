@@ -14,8 +14,6 @@ import java.sql.*;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Locale;
-import java.util.Properties;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.sql.DriverManager;
 
@@ -56,17 +54,7 @@ public class Main {
     private static final String REPLACE_STRING =
             "<h1>Random Quote Generator</h1>\n" +
             "<div class=\"white-box\">\n" +
-            "  <div class=\"quote\">\n" +
-            "    <p class=\"fa fa-quote-left fa-3x\"></p> \n" +
-            "    <p class=\"random-quote\"> <span id=\"text\"></span></p>\n" +
-            "  </div>\n" +
             "  <p class=\"random-author\">- <span id=\"author\"></span>\n" +
-            "  </p>\n" +
-            "  <p class= \"buttons\">\n" +
-            "<a id=\"tweet\" href=\"\"https://twitter.com/intent/tweet\"\" title=\"Tweet this!\"><button class= \"button\"><i class= \"fa fa-twitter\"></i></button></a>\n" +
-            "    <p class= \"new-quote-button\" >\n" +
-            "    <button class=\"button\" id=\"new-quote\"> New Quote\n" +
-            "    </p>\n" +
             "  </p>\n" +
             "</div>";
     /*------------Task_11------------*/
@@ -74,6 +62,23 @@ public class Main {
     /*------------Task_12------------*/
     private static final String USERS_COUNTRY = "";
     private static final String USERS_LANGUAGE = "";
+    /*------------Task_13------------*/
+    private static Connection CONNECTION = null;
+    static {
+        try {
+            CONNECTION = DriverManager.getConnection("jdbc:mysql://localhost/customers?serverTimezone=UTC","root", "admin");
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        }
+    }
+    private static final String FIRST_TABLE_NAME = "firsttabletask13";
+    private static final String FIRST_TABLE_CRITERIA = "paymentValue > 10000";
+    private static final String SECOND_TABLE_NAME = "secondtabletask13";
+    private static final String SECOND_TABLE_CRITERIA = "paymentValue > 10000";
+    /*------------Task_15------------*/
+    private static final int SPENDING_VALUE = 147;
+    private static final int PAYMENT_ID = 123542;
+    private static final String TABLE_NAME = "tabletask14";
 
     public static void main(String[] args) throws IOException {
         Task1();
@@ -87,7 +92,9 @@ public class Main {
         Task10();
         Task11();
         Task12();
-       // Task13();
+        Task13();
+        Task14();
+        Task15();
     }
 
     private static void Task1(){
@@ -196,4 +203,29 @@ public class Main {
         userInterface.greeter.SayHello(locale);
     }
 
+    private static void Task13() {
+        System.out.println("\n------------Task_13------------");
+        DataBaseUtil dataBaseUtil = new DataBaseUtil(CONNECTION);
+        dataBaseUtil.SetRequestList(new DataBaseRequest(FIRST_TABLE_NAME, FIRST_TABLE_CRITERIA));
+        dataBaseUtil.SetRequestList(new DataBaseRequest(SECOND_TABLE_NAME, SECOND_TABLE_CRITERIA));
+        dataBaseUtil.GetRequest();
+    }
+
+    private static void Task14(){
+        System.out.println("\n------------Task_14------------");
+        try {
+            Statement statement = CONNECTION.createStatement();
+            statement.executeUpdate("INSERT tabletask14(spending, paymentID) VALUES (6760, 123132)");
+            DataBaseUtil.PrintTable("tabletask14", CONNECTION);
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        }
+    }
+
+    private static void Task15(){
+        System.out.println("\n------------Task_15------------");
+        DataBaseUtil dataBaseUtil = new DataBaseUtil(CONNECTION);
+        dataBaseUtil.AddSpendingToTable(SPENDING_VALUE, PAYMENT_ID);
+        DataBaseUtil.PrintTable(TABLE_NAME, CONNECTION);
+    }
 }

@@ -675,33 +675,63 @@
       <ObjectGrants>ALL PRIVILEGES|db_example
 </ObjectGrants>
     </user>
-    <table id="210" parent="2" name="users"/>
-    <column id="211" parent="210" name="id">
+    <table id="210" parent="2" name="firsttabletask13"/>
+    <table id="211" parent="2" name="secondtabletask13"/>
+    <table id="212" parent="2" name="tabletask14"/>
+    <column id="213" parent="210" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="212" parent="210" name="paymentValue">
+    <column id="214" parent="210" name="paymentValue">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
     </column>
-    <column id="213" parent="210" name="paymentNumber">
+    <column id="215" parent="210" name="paymentNumber">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
     </column>
-    <column id="214" parent="210" name="receiverName">
+    <column id="216" parent="210" name="receiverName">
       <Position>4</Position>
       <DataType>varchar(30)|0s</DataType>
     </column>
-    <column id="215" parent="210" name="date_">
+    <column id="217" parent="210" name="date_">
       <Position>5</Position>
       <DataType>date|0s</DataType>
     </column>
-    <key id="216" parent="210" name="PRIMARY">
+    <key id="218" parent="210" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
+    <column id="219" parent="211" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+    </column>
+    <column id="220" parent="211" name="paymentValue">
+      <Position>2</Position>
+      <DataType>int(11)|0s</DataType>
+    </column>
+    <column id="221" parent="211" name="paymentNumber">
+      <Position>3</Position>
+      <DataType>int(11)|0s</DataType>
+    </column>
+    <column id="222" parent="211" name="receiverName">
+      <Position>4</Position>
+      <DataType>varchar(30)|0s</DataType>
+    </column>
+    <column id="223" parent="211" name="date_">
+      <Position>5</Position>
+      <DataType>date|0s</DataType>
+    </column>
+    <column id="224" parent="212" name="spending">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+    </column>
+    <column id="225" parent="212" name="paymentID">
+      <Position>2</Position>
+      <DataType>int(11)|0s</DataType>
+    </column>
   </database-model>
 </dataSource>
