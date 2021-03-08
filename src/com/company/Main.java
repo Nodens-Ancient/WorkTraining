@@ -6,8 +6,7 @@ import com.company.framework.*;
 import com.company.models.appliance.Philips;
 import com.company.models.appliance.TeaPot;
 import com.company.models.appliance.Toaster;
-import com.company.utils.FileUtil;
-import com.company.utils.ListUtil;
+import com.company.utils.*;
 
 import java.io.IOException;
 import java.sql.*;
@@ -36,10 +35,8 @@ public class Main {
     /*------------Task_6------------*/
     private static final Point POINT_1 = new Point();
     private static final Point POINT_2 = new Point(3f,4f);
-
     private static final Point POINT_3 = new Point(3f,1f);
     private static final Point POINT_4 = new Point(2f,5f);
-
     private static final Point POINT_5 = new Point(2f,15f);
     /*------------Task_7------------*/
     private static final String FOLDER_NAME_PATH = "D:\\Games";
@@ -80,7 +77,7 @@ public class Main {
     private static final int PAYMENT_ID = 123542;
     private static final String TABLE_NAME = "tabletask14";
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         Task1();
         Task3();
         Task4();
@@ -99,7 +96,6 @@ public class Main {
 
     private static void Task1(){
         System.out.println("\n------------Task_1------------");
-
         Line line = new Line();
         line.PrintLineInfo();
 
@@ -116,10 +112,8 @@ public class Main {
         System.out.println("\n------------Task_3------------");
         ListGeneratorUtil listGeneratorUtil = new ListGeneratorUtil(SIZE_OF_LIST);
         ArrayList<Integer> list = listGeneratorUtil.GetListWithRandomValues(MIN_GRADE, MAX_GRADE);
-
         System.out.print("List with all marks: ");
         System.out.println(list);
-
         System.out.print("List with only positive marks: ");
         System.out.println(ListUtil.FilterListByValue(list, TARGET_VALUE));
     }
@@ -128,10 +122,8 @@ public class Main {
         System.out.println("\n------------Task_4------------");
         ListGeneratorUtil listGeneratorUtil = new ListGeneratorUtil(SIZE_OF_LIST);
         ArrayList<Integer> list = listGeneratorUtil.GetListWithRandomValues(MIN_GRADE, MAX_GRADE);
-
         System.out.print("List with all marks: ");
         System.out.println(list);
-
         System.out.print("Highest mark: ");
         System.out.println(ListUtil.GetMaxValue(list));
     }
@@ -140,23 +132,21 @@ public class Main {
         System.out.println("\n------------Task_5------------");
         Philips philips = new Philips(PHILIPS_TEAPOT_NAME);
         philips.TurnOn();
-
         TeaPot teaPot = new TeaPot(TEAPOT_NAME);
         teaPot.BoilWater();
-
         Toaster toaster = new Toaster(TOASTER_NAME);
         toaster.TurnOn();
     }
 
-    private static void Task6() throws IOException {
+    private static void Task6(){
         System.out.println("\n------------Task_6------------");
         ListGeneratorUtil listGeneratorUtil = new ListGeneratorUtil(NUMBER_OF_VALUES);
         ArrayList<Integer> list = listGeneratorUtil.GetListWithRandomValues(MIN_VALUE, MAX_VALUE);
         BinaryFileGeneratorUtil.SetBinaryFileValuesFromList(BINARY_FILE_NAME, list);
-        System.out.printf("List of values is: %s\n",list);
-
         System.out.printf("List of values from binary file is: %s\n", FileUtil.GetListOfValuesFromBinaryFile(BINARY_FILE_NAME));
         System.out.printf("Average value: %s\n", ListUtil.GetAverageValueOfList(FileUtil.GetListOfValuesFromBinaryFile(BINARY_FILE_NAME)));
+        System.out.printf("List of values is: %s\n",list);
+
     }
 
     private static void Task7(){

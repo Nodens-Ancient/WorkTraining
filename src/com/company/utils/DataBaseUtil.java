@@ -1,4 +1,6 @@
-package com.company.framework;
+package com.company.utils;
+
+import com.company.framework.DataBaseRequest;
 
 import java.sql.*;
 import java.util.ArrayList;

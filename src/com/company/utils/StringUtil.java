@@ -1,9 +1,8 @@
-package com.company.framework;
+package com.company.utils;
 
+import com.company.utils.StringGeneratorUtil;
 import com.company.utils.TimeRegisterUtil;
 
-import java.sql.ClientInfoStatus;
-import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

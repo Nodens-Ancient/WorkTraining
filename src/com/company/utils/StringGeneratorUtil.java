@@ -1,4 +1,4 @@
-package com.company.framework;
+package com.company.utils;
 
 import java.util.UUID;
 

@@ -1,6 +1,8 @@
 package com.company.framework;
 
 
+import com.company.utils.DataBaseUtil;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
