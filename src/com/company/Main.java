@@ -8,7 +8,6 @@ import com.company.models.appliance.TeaPot;
 import com.company.models.appliance.Toaster;
 import com.company.utils.*;
 
-import java.io.IOException;
 import java.sql.*;
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -20,6 +19,7 @@ public class Main {
     /*------------Task_1------------*/
     private static final int SIZE_OF_LIST = 10;
     private static final int TARGET_VALUE = 4;
+    /*------------Task_2------------*/
     /*------------Task_3------------*/
     private static final int MAX_GRADE = 10;
     private static final int MIN_GRADE = 1;
@@ -76,9 +76,12 @@ public class Main {
     private static final int SPENDING_VALUE = 147;
     private static final int PAYMENT_ID = 123542;
     private static final String TABLE_NAME = "tabletask14";
+    /*------------Task_18------------*/
+    private static final String XML_FILE_PATH = "src/com/company/resourses/RandomXMLFile.xml";
 
     public static void main(String[] args) {
         Task1();
+        Task2();
         Task3();
         Task4();
         Task5();
@@ -92,6 +95,8 @@ public class Main {
         Task13();
         Task14();
         Task15();
+        Task18();
+
     }
 
     private static void Task1(){
@@ -106,6 +111,15 @@ public class Main {
         thirdLine.PrintLineInfo();
 
         thirdLine.PointBelongsToLine(POINT_5);
+    }
+
+
+    private static void Task2(){
+        System.out.println("\n------------Task_2------------");
+        Bank bank=new Bank();
+        bank.FirstTrasactionMethod();
+        bank.SecondTransactionMethod();
+        bank.ThirdTransactionMethod();
     }
 
     private static void Task3(){
@@ -217,5 +231,10 @@ public class Main {
         DataBaseUtil dataBaseUtil = new DataBaseUtil(CONNECTION);
         dataBaseUtil.AddSpendingToTable(SPENDING_VALUE, PAYMENT_ID);
         DataBaseUtil.PrintTable(TABLE_NAME, CONNECTION);
+    }
+
+    private static void Task18(){
+        System.out.println("\n------------Task_18------------");
+        ParserXML.Parse(XML_FILE_PATH);
     }
 }
