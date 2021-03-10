@@ -8,6 +8,11 @@ import com.company.models.appliance.TeaPot;
 import com.company.models.appliance.Toaster;
 import com.company.utils.*;
 
+import javax.swing.text.html.parser.DTD;
+import javax.xml.transform.*;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
+import java.io.*;
 import java.sql.*;
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -78,6 +83,10 @@ public class Main {
     private static final String TABLE_NAME = "tabletask14";
     /*------------Task_18------------*/
     private static final String XML_FILE_PATH = "src/com/company/resourses/RandomXMLFile.xml";
+    /*------------Task_19------------*/
+    private static final String XML_FILE = "D:\\Soft\\JavaProjects\\ST\\St3\\src\\com\\company\\XMLFile.xml";
+    private static final String HTML_FILE = "D:\\Soft\\JavaProjects\\ST\\St3\\src\\com\\company\\HTMLFile.html";
+    private static final String XSLT_FILE = "D:\\Soft\\JavaProjects\\ST\\St3\\src\\com\\company\\XSLTFile.xslt";
 
     public static void main(String[] args) {
         Task1();
@@ -95,7 +104,9 @@ public class Main {
         Task13();
         Task14();
         Task15();
+        //Task17();
         Task18();
+        Task19();
 
     }
 
@@ -233,8 +244,34 @@ public class Main {
         DataBaseUtil.PrintTable(TABLE_NAME, CONNECTION);
     }
 
+    //private static void Task17(){}
+
     private static void Task18(){
         System.out.println("\n------------Task_18------------");
         ParserXML.Parse(XML_FILE_PATH);
+    }
+
+    private static void Task19(){
+        Source xmlFile = new StreamSource(new File(XML_FILE));
+        Source xsltFile = new StreamSource(XSLT_FILE);
+        StringWriter sw = new StringWriter();
+
+        try {
+
+            FileWriter fileWriter = new FileWriter(HTML_FILE);
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer trasformer = transformerFactory.newTransformer(xsltFile);
+            trasformer.transform(xmlFile, new StreamResult(sw));
+            fileWriter.write(sw.toString());
+            fileWriter.close();
+            System.out.println("product.html generated successfully");
+
+        } catch (IOException | TransformerConfigurationException e) {
+            e.printStackTrace();
+        } catch (TransformerFactoryConfigurationError e) {
+            e.printStackTrace();
+        } catch (TransformerException e) {
+            e.printStackTrace();
+        }
     }
 }
