@@ -1,25 +1,22 @@
 package com.company.utils;
 
-import com.company.utils.StringGeneratorUtil;
-import com.company.utils.TimeRegisterUtil;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringUtil {
-    private String string;
+    private String startString;
     private StringBuilder stringBuilder;
     private String testString;
 
     public StringUtil(){
-        this.string = "";
+        this.startString = "";
         this.stringBuilder = new StringBuilder();
         testString = StringGeneratorUtil.GetRandomString().replace("-","");
     }
 
     public StringUtil(String testString){
         this.testString = testString;
-        this.string = "";
+        this.startString = "";
         this.stringBuilder = new StringBuilder();
     }
 
@@ -31,7 +28,7 @@ public class StringUtil {
     private void StringAdder(){
         System.out.print("Starting String test: ");
         for (int i = 0; i < 10000; i++) {
-            string += this.testString;
+            startString += this.testString;
         }
     }
 
@@ -44,7 +41,7 @@ public class StringUtil {
 
     public static void GetMatchesInString(Pattern pattern){
         String line = StringGeneratorUtil.GetRandomString();
-        GetMatchesInString(pattern, line);
+        GetMatchesInString(pattern, line.toUpperCase());
     }
     public static void GetMatchesInString(Pattern pattern, String line){
         Matcher matcher = pattern.matcher(line);

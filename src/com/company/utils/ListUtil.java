@@ -6,12 +6,12 @@ import java.util.ListIterator;
 
 public class ListUtil {
     public static ArrayList<Integer> FilterListByValue(ArrayList<Integer> list, int targetValue){
-        ListIterator<Integer> listIterator = list.listIterator();
-        while (listIterator.hasNext()){
-            if (listIterator.next() < targetValue){
-                listIterator.remove();
-            }
-        }
+        list.removeIf(integer -> integer < targetValue);
+//        while (listIterator.hasNext()){
+//            if (listIterator.next() < targetValue){
+//                listIterator.remove();
+//            }
+//        }
         return list;
     }
 

@@ -10,9 +10,7 @@ public class AnnotationAnalyser {
                 System.out.println("Transaction started");
                 method.invoke(null);//only for static methods
                 System.out.println("Transaction finished");
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            } catch (InvocationTargetException e) {
+            } catch (IllegalAccessException | InvocationTargetException e) {
                 e.printStackTrace();
             }
         }

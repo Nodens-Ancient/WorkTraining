@@ -7,14 +7,13 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-import javax.swing.text.html.parser.DTD;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;;
+import java.nio.file.Paths;
 
 public class ParserXML {
     public static void Parse(String filePath){
@@ -26,9 +25,7 @@ public class ParserXML {
             is.setCharacterStream(new StringReader(content));
             Document document = documentBuilder.parse(is);
             PrintAllNodes(document.getChildNodes());
-        } catch (IOException | SAXException e) {
-            e.printStackTrace();
-        } catch (ParserConfigurationException e) {
+        } catch (IOException | SAXException | ParserConfigurationException e) {
             e.printStackTrace();
         }
     }

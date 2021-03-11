@@ -8,7 +8,6 @@ import com.company.models.appliance.TeaPot;
 import com.company.models.appliance.Toaster;
 import com.company.utils.*;
 
-import javax.swing.text.html.parser.DTD;
 import javax.xml.transform.*;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
@@ -54,11 +53,12 @@ public class Main {
     private static final Pattern REPLACE_PATTERN = Pattern.compile("<p" + "(.*?)" + ">");
     private static final String REPLACE_WITH = "<p>";
     private static final String REPLACE_STRING =
-            "<h1>Random Quote Generator</h1>\n" +
-            "<div class=\"white-box\">\n" +
-            "  <p class=\"random-author\">- <span id=\"author\"></span>\n" +
-            "  </p>\n" +
-            "</div>";
+            """
+                    <h1>Random Quote Generator</h1>
+                    <div class="white-box">
+                      <p class="random-author">- <span id="author"></span>
+                      </p>
+                    </div>""";
     /*------------Task_11------------*/
     private static final float MONEY_AMOUNT = 153.5f;
     /*------------Task_12------------*/
@@ -114,13 +114,10 @@ public class Main {
         System.out.println("\n------------Task_1------------");
         Line line = new Line();
         line.PrintLineInfo();
-
         Line secondLine = new Line(POINT_1, POINT_2);
         secondLine.PrintLineInfo();
-
         Line thirdLine = new Line(POINT_3, POINT_4);
         thirdLine.PrintLineInfo();
-
         thirdLine.PointBelongsToLine(POINT_5);
     }
 
@@ -128,7 +125,7 @@ public class Main {
     private static void Task2(){
         System.out.println("\n------------Task_2------------");
         Bank bank=new Bank();
-        bank.FirstTrasactionMethod();
+        bank.FirstTransactionMethod();
         bank.SecondTransactionMethod();
         bank.ThirdTransactionMethod();
     }
@@ -137,20 +134,17 @@ public class Main {
         System.out.println("\n------------Task_3------------");
         ListGeneratorUtil listGeneratorUtil = new ListGeneratorUtil(SIZE_OF_LIST);
         ArrayList<Integer> list = listGeneratorUtil.GetListWithRandomValues(MIN_GRADE, MAX_GRADE);
-        System.out.print("List with all marks: ");
-        System.out.println(list);
-        System.out.print("List with only positive marks: ");
-        System.out.println(ListUtil.FilterListByValue(list, TARGET_VALUE));
+        System.out.printf("List with all marks: %s\n",list);
+        System.out.printf("List with only positive marks: %s\n", ListUtil.FilterListByValue(list, TARGET_VALUE));
     }
 
     private static void Task4(){
         System.out.println("\n------------Task_4------------");
         ListGeneratorUtil listGeneratorUtil = new ListGeneratorUtil(SIZE_OF_LIST);
         ArrayList<Integer> list = listGeneratorUtil.GetListWithRandomValues(MIN_GRADE, MAX_GRADE);
-        System.out.print("List with all marks: ");
+        System.out.printf("List with all marks: %s\n", list);
         System.out.println(list);
-        System.out.print("Highest mark: ");
-        System.out.println(ListUtil.GetMaxValue(list));
+        System.out.printf("Highest mark: %s\n", ListUtil.GetMaxValue(list));
     }
 
     private static void Task5(){
@@ -168,10 +162,9 @@ public class Main {
         ListGeneratorUtil listGeneratorUtil = new ListGeneratorUtil(NUMBER_OF_VALUES);
         ArrayList<Integer> list = listGeneratorUtil.GetListWithRandomValues(MIN_VALUE, MAX_VALUE);
         BinaryFileGeneratorUtil.SetBinaryFileValuesFromList(BINARY_FILE_NAME, list);
+        System.out.printf("List of values is: %s\n",list);
         System.out.printf("List of values from binary file is: %s\n", FileUtil.GetListOfValuesFromBinaryFile(BINARY_FILE_NAME));
         System.out.printf("Average value: %s\n", ListUtil.GetAverageValueOfList(FileUtil.GetListOfValuesFromBinaryFile(BINARY_FILE_NAME)));
-        System.out.printf("List of values is: %s\n",list);
-
     }
 
     private static void Task7(){
@@ -180,7 +173,7 @@ public class Main {
             System.out.println(FileUtil.GetFilesList(FOLDER_NAME_PATH));
         }
         catch (NullPointerException exception){
-            System.out.printf("Path %s does not lead to a folder", FOLDER_NAME_PATH);
+            System.out.printf("Path %s does not lead to a folder\n", FOLDER_NAME_PATH);
         }
     }
 
@@ -255,22 +248,14 @@ public class Main {
         Source xmlFile = new StreamSource(new File(XML_FILE));
         Source xsltFile = new StreamSource(XSLT_FILE);
         StringWriter sw = new StringWriter();
-
         try {
-
             FileWriter fileWriter = new FileWriter(HTML_FILE);
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer trasformer = transformerFactory.newTransformer(xsltFile);
             trasformer.transform(xmlFile, new StreamResult(sw));
             fileWriter.write(sw.toString());
             fileWriter.close();
-            System.out.println("product.html generated successfully");
-
-        } catch (IOException | TransformerConfigurationException e) {
-            e.printStackTrace();
-        } catch (TransformerFactoryConfigurationError e) {
-            e.printStackTrace();
-        } catch (TransformerException e) {
+        } catch (IOException | TransformerFactoryConfigurationError | TransformerException e) {
             e.printStackTrace();
         }
     }

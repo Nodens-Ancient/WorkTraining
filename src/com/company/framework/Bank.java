@@ -4,7 +4,7 @@ import java.lang.reflect.Method;
 
 public class Bank {
     @Transaction
-    public void FirstTrasactionMethod(){
+    public void FirstTransactionMethod(){
         MethodController(new Object(){}.getClass().getEnclosingMethod(), "start");
         System.out.println("First Bank Method");
         MethodController(new Object(){}.getClass().getEnclosingMethod(), "end");
@@ -25,7 +25,7 @@ public class Bank {
     public void MethodController(Method actionOfMethod, String state)
     {
         if(actionOfMethod.isAnnotationPresent(Transaction.class)){
-            System.out.println("Tranzaction is " + state);
+            System.out.println("Transaction is " + state);
         }
     }
 }
