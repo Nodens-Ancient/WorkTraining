@@ -11,4 +11,22 @@
         <price>30000.00</price>
         <stock>7</stock>
     </Product>
+    <Product>
+        <productId>I4</productId>
+        <productName>SONY LCD TV DELUXE EDITION</productName>
+        <price>80000.00</price>
+        <stock>1</stock>
+    </Product>
+    <Product>
+        <productId>I2</productId>
+        <productName>PHILIPS TEAPOT</productName>
+        <price>3000.00</price>
+        <stock>3</stock>
+    </Product>
+    <Product>
+        <productId>I15</productId>
+        <productName>IPHONE 9</productName>
+        <price>15000.00</price>
+        <stock>16</stock>
+    </Product>
 </ProductList>

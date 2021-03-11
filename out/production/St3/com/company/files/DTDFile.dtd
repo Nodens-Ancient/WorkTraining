@@ -1,0 +1,8 @@
+<!DOCTYPE ProductList [
+        <!ELEMENT ProductList (Product)*>
+        <!ELEMENT Product (productId|productName|price|stock)*>
+        <!ELEMENT productId (#PCDATA)>
+        <!ELEMENT productName (#PCDATA)>
+        <!ELEMENT price (#PCDATA)>
+        <!ELEMENT stock (#PCDATA)>
+        ]>

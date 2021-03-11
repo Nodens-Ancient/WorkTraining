@@ -1,9 +1,8 @@
 package com.company.framework;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.NamedNodeMap;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+import com.company.Product;
+import com.company.ProductList;
+import org.w3c.dom.*;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
@@ -16,7 +15,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class ParserXML {
-    public static void Parse(String filePath){
+
+    public static Document GetDocumentFromXML(String filePath){
         Path path = Paths.get(filePath);
         InputSource is = new InputSource();
         try {
@@ -24,13 +24,14 @@ public class ParserXML {
             String content = Files.readString(path);
             is.setCharacterStream(new StringReader(content));
             Document document = documentBuilder.parse(is);
-            PrintAllNodes(document.getChildNodes());
+            return document;
         } catch (IOException | SAXException | ParserConfigurationException e) {
             e.printStackTrace();
+            return null;
         }
     }
 
-    private static void PrintAllNodes(NodeList nodeList){
+    public static void PrintAllNodes(NodeList nodeList){
         for (int i = 0; i < nodeList.getLength(); i++) {
             Node node = nodeList.item(i);
             if (node.getNodeType() == Node.TEXT_NODE) {
@@ -47,5 +48,29 @@ public class ParserXML {
             if (node.hasChildNodes())
                 PrintAllNodes(node.getChildNodes());
         }
+    }
+
+    public static ProductList GetInformation(Document document, ProductList productList){
+        NodeList nodeList = document.getChildNodes();
+        for (int i = 0; i < nodeList.getLength(); i++){
+            Node node = nodeList.item(i);
+            if (node.getNodeType() == Node.ELEMENT_NODE){
+                Element element =(Element) node;
+                for (int j = 0; j < element.getElementsByTagName("Product").getLength(); j++){
+
+                    String prodID = element.getElementsByTagName("productId").item(j).getTextContent();
+                    String prodName = element.getElementsByTagName("productName").item(j).getTextContent();
+                    String prodPrice = element.getElementsByTagName("price").item(j).getTextContent();
+                    String prodStock = element.getElementsByTagName("stock").item(j).getTextContent();
+
+                    productList.AddProduct(new Product(prodName, prodID, prodPrice, prodStock));
+                }
+            }
+        }
+        return productList;
+    }
+
+    public static void PrintList(NodeList nodeList){
+
     }
 }

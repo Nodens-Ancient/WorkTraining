@@ -7,7 +7,9 @@ import com.company.models.appliance.Philips;
 import com.company.models.appliance.TeaPot;
 import com.company.models.appliance.Toaster;
 import com.company.utils.*;
+import org.w3c.dom.Document;
 
+import javax.print.Doc;
 import javax.xml.transform.*;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
@@ -32,7 +34,7 @@ public class Main {
     private static final String PHILIPS_TEAPOT_NAME = "PhilipsTeapot";
     private static final String TOASTER_NAME = "Toaster";
     /*------------Task_5------------*/
-    private static final String BINARY_FILE_NAME = "BinaryFile.txt";
+    private static final String BINARY_FILE_NAME = "D:\\Soft\\JavaProjects\\ST\\St3\\src\\com\\company\\files\\XMLFile.xml";
     private static final int NUMBER_OF_VALUES = 20;
     private static final int MAX_VALUE = 20;
     private static final int MIN_VALUE = 1;
@@ -84,29 +86,30 @@ public class Main {
     /*------------Task_18------------*/
     private static final String XML_FILE_PATH = "src/com/company/resourses/RandomXMLFile.xml";
     /*------------Task_19------------*/
-    private static final String XML_FILE = "D:\\Soft\\JavaProjects\\ST\\St3\\src\\com\\company\\XMLFile.xml";
-    private static final String HTML_FILE = "D:\\Soft\\JavaProjects\\ST\\St3\\src\\com\\company\\HTMLFile.html";
-    private static final String XSLT_FILE = "D:\\Soft\\JavaProjects\\ST\\St3\\src\\com\\company\\XSLTFile.xslt";
+    private static final String XML_FILE = "D:\\Soft\\JavaProjects\\ST\\St3\\src\\com\\company\\files\\XMLFile.xml";
+    private static final String HTML_FILE = "D:\\Soft\\JavaProjects\\ST\\St3\\src\\com\\company\\files\\HTMLFile.html";
+    private static final String XSLT_FILE = "D:\\Soft\\JavaProjects\\ST\\St3\\src\\com\\company\\files\\XSLTFile.xslt";
 
     public static void main(String[] args) {
-        Task1();
-        Task2();
-        Task3();
-        Task4();
-        Task5();
-        Task6();
-        Task7();
-        Task8();
-        Task9();
-        Task10();
-        Task11();
-        Task12();
-        Task13();
-        Task14();
-        Task15();
-        //Task17();
-        Task18();
-        Task19();
+//        Task1();
+//        Task2();
+//        Task3();
+//        Task4();
+//        Task5();
+//        Task6();
+//        Task7();
+//        Task8();
+//        Task9();
+//        Task10();
+//        Task11();
+//        Task12();
+//        Task13();
+//        Task14();
+//        Task15();
+//        Task17();
+//        Task18();
+//        Task19();
+        Task20();
 
     }
 
@@ -241,7 +244,8 @@ public class Main {
 
     private static void Task18(){
         System.out.println("\n------------Task_18------------");
-        ParserXML.Parse(XML_FILE_PATH);
+        Document documentXML = ParserXML.GetDocumentFromXML(XML_FILE_PATH);
+        ParserXML.PrintAllNodes(documentXML.getChildNodes());
     }
 
     private static void Task19(){
@@ -251,12 +255,20 @@ public class Main {
         try {
             FileWriter fileWriter = new FileWriter(HTML_FILE);
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
-            Transformer trasformer = transformerFactory.newTransformer(xsltFile);
-            trasformer.transform(xmlFile, new StreamResult(sw));
+            Transformer transformer = transformerFactory.newTransformer(xsltFile);
+            transformer.transform(xmlFile, new StreamResult(sw));
             fileWriter.write(sw.toString());
             fileWriter.close();
         } catch (IOException | TransformerFactoryConfigurationError | TransformerException e) {
             e.printStackTrace();
         }
+    }
+
+    private static void Task20(){
+        System.out.println("\n------------Task_20------------");
+        Document documentXML = ParserXML.GetDocumentFromXML(XML_FILE_PATH);
+        ProductList productList = new ProductList();
+        productList = ParserXML.GetInformation(documentXML, productList);
+        System.out.println(productList);
     }
 }
