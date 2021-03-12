@@ -9,7 +9,6 @@ import com.company.models.appliance.Toaster;
 import com.company.utils.*;
 import org.w3c.dom.Document;
 
-import javax.print.Doc;
 import javax.xml.transform.*;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
@@ -84,31 +83,34 @@ public class Main {
     private static final int PAYMENT_ID = 123542;
     private static final String TABLE_NAME = "tabletask14";
     /*------------Task_18------------*/
-    private static final String XML_FILE_PATH = "src/com/company/resourses/RandomXMLFile.xml";
+    private static final String XML_FILE_TASK18 = "D:\\Soft\\JavaProjects\\ST\\St3\\src\\com\\company\\files\\XMLFile.xml";
     /*------------Task_19------------*/
-    private static final String XML_FILE = "D:\\Soft\\JavaProjects\\ST\\St3\\src\\com\\company\\files\\XMLFile.xml";
-    private static final String HTML_FILE = "D:\\Soft\\JavaProjects\\ST\\St3\\src\\com\\company\\files\\HTMLFile.html";
-    private static final String XSLT_FILE = "D:\\Soft\\JavaProjects\\ST\\St3\\src\\com\\company\\files\\XSLTFile.xslt";
+    private static final String XML_FILE_TASK19 = "D:\\Soft\\JavaProjects\\ST\\St3\\src\\com\\company\\files\\XMLFile.xml";
+    private static final String HTML_FILE_TASK19 = "D:\\Soft\\JavaProjects\\ST\\St3\\src\\com\\company\\files\\HTMLFile.html";
+    private static final String XSLT_FILE_TASK19 = "D:\\Soft\\JavaProjects\\ST\\St3\\src\\com\\company\\files\\XSLTFile.xslt";
+    /*------------Task_20------------*/
+    private static final String OUTPUT_XML_FILE_TASK20 = "D:\\Soft\\JavaProjects\\ST\\St3\\src\\com\\company\\files\\OutputXMLFile.xml";
+    private static final float VALUE = 500;
 
     public static void main(String[] args) {
-//        Task1();
-//        Task2();
-//        Task3();
-//        Task4();
-//        Task5();
-//        Task6();
-//        Task7();
-//        Task8();
-//        Task9();
-//        Task10();
-//        Task11();
-//        Task12();
-//        Task13();
-//        Task14();
-//        Task15();
+        Task1();
+        Task2();
+        Task3();
+        Task4();
+        Task5();
+        Task6();
+        Task7();
+        Task8();
+        Task9();
+        Task10();
+        Task11();
+        Task12();
+        Task13();
+        Task14();
+        Task15();
 //        Task17();
-//        Task18();
-//        Task19();
+        Task18();
+        Task19();
         Task20();
 
     }
@@ -244,16 +246,17 @@ public class Main {
 
     private static void Task18(){
         System.out.println("\n------------Task_18------------");
-        Document documentXML = ParserXML.GetDocumentFromXML(XML_FILE_PATH);
+        Document documentXML = ParserXML.GetDocumentFromXML(XML_FILE_TASK18);
+        assert documentXML != null;
         ParserXML.PrintAllNodes(documentXML.getChildNodes());
     }
 
     private static void Task19(){
-        Source xmlFile = new StreamSource(new File(XML_FILE));
-        Source xsltFile = new StreamSource(XSLT_FILE);
+        Source xmlFile = new StreamSource(new File(XML_FILE_TASK19));
+        Source xsltFile = new StreamSource(XSLT_FILE_TASK19);
         StringWriter sw = new StringWriter();
         try {
-            FileWriter fileWriter = new FileWriter(HTML_FILE);
+            FileWriter fileWriter = new FileWriter(HTML_FILE_TASK19);
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer(xsltFile);
             transformer.transform(xmlFile, new StreamResult(sw));
@@ -266,9 +269,13 @@ public class Main {
 
     private static void Task20(){
         System.out.println("\n------------Task_20------------");
-        Document documentXML = ParserXML.GetDocumentFromXML(XML_FILE_PATH);
+        Document documentXML = ParserXML.GetDocumentFromXML(XML_FILE_TASK18);
         ProductList productList = new ProductList();
-        productList = ParserXML.GetInformation(documentXML, productList);
-        System.out.println(productList);
+        assert documentXML != null;
+        ParserXML.GetInformation(documentXML, productList);
+        ProductList.RaseAllPrices(productList, VALUE);
+        Document document = ParserXML.SetXMLFileFromListOfProducts(productList);
+        ParserXML.PrintDocumentToXMLFile(document, OUTPUT_XML_FILE_TASK20);
+        System.out.printf("Printed to file %s", OUTPUT_XML_FILE_TASK20);
     }
 }

@@ -3,7 +3,7 @@ package com.company;
 import java.util.ArrayList;
 
 public class ProductList {
-    ArrayList<Product> products;
+    public ArrayList<Product> products;
 
     public ProductList(ArrayList<Product> products) {
         this.products = products;
@@ -11,14 +11,6 @@ public class ProductList {
 
     public ProductList(){
         this.products = new ArrayList<>();
-    }
-
-    public ArrayList<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(ArrayList<Product> products) {
-        this.products = products;
     }
 
     public void AddProduct(Product product){
@@ -30,5 +22,13 @@ public class ProductList {
         return "ProductList{" +
                 "products=" + products +
                 '}';
+    }
+    public static void RaseAllPrices(ProductList productList, float value){
+        for (Product p:
+                productList.products) {
+            Float price = p.getProductPrice();
+            price += value;
+            p.setProductPrice(price);
+        }
     }
 }

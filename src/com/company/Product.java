@@ -1,12 +1,12 @@
 package com.company;
 
 public class Product {
-    private String productName;
-    private String productID;
-    private String productPrice;
-    private String productInStock;
+    private final String productName;
+    private final String productID;
+    private Float productPrice;
+    private final Integer productInStock;
 
-    public Product(String productName, String productID, String productPrice, String productInStock) {
+    public Product(String productName, String productID, float productPrice, int productInStock) {
         this.productName = productName;
         this.productID = productID;
         this.productPrice = productPrice;
@@ -17,32 +17,20 @@ public class Product {
         return productName;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
     public String getProductID() {
         return productID;
     }
 
-    public void setProductID(String productID) {
-        this.productID = productID;
-    }
-
-    public String getProductPrice() {
+    public Float getProductPrice() {
         return productPrice;
     }
 
-    public void setProductPrice(String productPrice) {
+    public void setProductPrice(Float productPrice) {
         this.productPrice = productPrice;
     }
 
-    public String getProductInStock() {
+    public Integer getProductInStock() {
         return productInStock;
-    }
-
-    public void setProductInStock(String productInStock) {
-        this.productInStock = productInStock;
     }
 
     @Override
